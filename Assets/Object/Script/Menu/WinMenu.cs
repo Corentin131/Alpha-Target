@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuGestion : MonoBehaviour
-{public GlobalInforationscript gLS;
+public class WinMenu : MonoBehaviour
+{
+    public GlobalInforationscript gLS;
     public GameObject winMenu;
     public GameObject gameOverMenu;
     // Start is called before the first frame update
