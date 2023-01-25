@@ -67,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
                 Shoot();
             }
             Movement(touch);
+        }else if(Input.touchCount <= 0 && canShot == true){
+            Shoot();
         }
         if (runningNumberOfRecharge <= 0){
            StartCoroutine(GameOver());
