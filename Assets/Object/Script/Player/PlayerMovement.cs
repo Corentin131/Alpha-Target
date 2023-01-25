@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject projectile;
     public float percentageOfLimit;
     public int numberOfRecharge;
-    bool canShot = true;
-    bool canRecharge = false;
+    public bool canShot = true;
+    public bool canRecharge = false;
     public float staticTimerFire;
     public float timeBeforeAnimationShooterRecharge;
     public string nameTriggerAnimatorShooterRecharge;
