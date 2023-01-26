@@ -9,6 +9,7 @@ public class GlobalInforationscript : MonoBehaviour
     public bool win = false;
     public bool loose = false;
     public float timerRecharge;
+    public int runningNumberOfRecharge;
     // Start is called before the first frame update
     void Start()
     {

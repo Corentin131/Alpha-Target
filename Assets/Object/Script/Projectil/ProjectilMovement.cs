@@ -22,18 +22,21 @@ public class ProjectilMovement : MonoBehaviour
     public int speed;
     public string cameraName;
     Animator cameraAnimation;
+    UnityEngine.Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         foot =  GameObject.FindWithTag("ProjectileFoot");
         gLS = GameObject.Find("GlobalInformation").GetComponent<GlobalInforationscript>();
         cameraAnimation = GameObject.Find(cameraName).GetComponent<Animator>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //m_Rigidbody.AddForce(transform.up * m_Thrust);
         if (fire == true){
             //quand le joueur a actionner le boutton tirer
             if (particleWhenMove != null){
@@ -71,7 +74,6 @@ public class ProjectilMovement : MonoBehaviour
         }
     }
     void OnTouchObstacleNotStay(){
-        Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
         rb.gravityScale = 1;
         rb.AddRelativeForce(new UnityEngine.Vector2(0f, -500f));
         rb.AddTorque(50f);
@@ -82,9 +84,14 @@ public class ProjectilMovement : MonoBehaviour
         if(particleWhenTouchObstacleNotStay != null){
             particleWhenTouchObstacleNotStay.Play();
         }
+        gLS.runningNumberOfRecharge -= 1;
+        if (gLS.runningNumberOfRecharge <= 0){
+            gLS.loose = true;
+        }
         StartCoroutine(End());
     }
     void OnTouchObstacleStay(Collider2D other){
+        rb.velocity = new UnityEngine.Vector2(0, 0);
         if (tutchTarget != true){
             inObstacle = true;
             fire = false;
@@ -95,9 +102,12 @@ public class ProjectilMovement : MonoBehaviour
             if(particleWhenTouchObstacle != null){
                 particleWhenTouchObstacle.Play();
             }
-
-                
             
+            gLS.runningNumberOfRecharge -= 1;
+            if (gLS.runningNumberOfRecharge <= 0){
+                gLS.loose = true;
+            }
+
         }
     }
 
@@ -114,6 +124,8 @@ public class ProjectilMovement : MonoBehaviour
         if(particleWhenTouchObstacle != null){
             particleWhenTouchTarget.Play();
         }
+        gLS.runningNumberOfRecharge -= 1;
+        gLS.win = true;
         StartCoroutine(End());
     }
     IEnumerator End() {

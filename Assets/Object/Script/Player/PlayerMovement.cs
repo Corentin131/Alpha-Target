@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         gLS.timerRecharge = staticTimerFire;
         runningNumberOfRecharge = numberOfRecharge;
+        gLS.runningNumberOfRecharge = runningNumberOfRecharge;
         numberOfRechargeText.text =  runningNumberOfRecharge.ToString()+"/"+numberOfRecharge.ToString();
 
         runningTimerFire = staticTimerFire;
@@ -70,9 +71,11 @@ public class PlayerMovement : MonoBehaviour
         }else if(Input.touchCount <= 0 && canShot == true){
             Shoot();
         }
-        if (runningNumberOfRecharge <= 0){
-           StartCoroutine(GameOver());
+        if(runningNumberOfRecharge != gLS.runningNumberOfRecharge){
+            numberOfRechargeText.text = gLS.runningNumberOfRecharge.ToString()+"/"+runningNumberOfRecharge.ToString();
+            numberOfRechargeTextAnimator.SetTrigger("Loose");
         }
+        runningNumberOfRecharge = gLS.runningNumberOfRecharge;
     }   
 
     void Movement(Touch touch){
@@ -82,11 +85,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Shoot(){
         animatorShooter.SetTrigger(nameTriggerAnimatorShooterShoot);
-
-        runningNumberOfRecharge -= 1;
-        numberOfRechargeText.text = runningNumberOfRecharge.ToString()+"/"+numberOfRecharge.ToString();
-        numberOfRechargeTextAnimator.SetTrigger("Loose");
-
         if(nameTriggerAnimatorCameraAnimator != ""){
             animatorCamera.SetTrigger(nameTriggerAnimatorCameraAnimator);
         }

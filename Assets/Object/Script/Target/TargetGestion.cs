@@ -13,8 +13,8 @@ public class TargetGestion : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         SetActiveGameObject(objectsToActivate,objectsToDisable);
-        gLS.win = true; 
-        gLS.loose = false;
+        //gLS.win = true; 
+        //gLS.loose = false;
         //StartCoroutine(TakeScreenShot()); 
         StartCoroutine(End());
     }

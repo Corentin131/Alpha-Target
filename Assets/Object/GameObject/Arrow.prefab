@@ -9882,8 +9882,6 @@ MonoBehaviour:
   particleWhenTouchObstacleNotStay: {fileID: 0}
   trailRenderer: {fileID: 2615164955409686149}
   speed: 35
-  arrowDrowing: {fileID: 7220055477515777153}
-  onTutchParameter: StayInObtsacle
   cameraName: Main Camera
 --- !u!50 &921471556696356125
 Rigidbody2D:
