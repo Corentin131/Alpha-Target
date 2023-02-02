@@ -168,15 +168,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce48112b06be3f94caa57cc3febed5c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire: 0
-  inObstacle: 0
-  tutchTarget: 0
-  waitForFire: 1
+  state: 1
   particleWhenMove: {fileID: 0}
   particleWhenTouchObstacle: {fileID: 0}
   particleWhenTouchTarget: {fileID: 0}
   particleWhenTouchObstacleNotStay: {fileID: 0}
   trailRenderer: {fileID: 0}
+  arrowAnimator: {fileID: 0}
   speed: 0
   cameraName: 
 --- !u!1 &268081661
@@ -1190,6 +1188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 300
+  speedPearSecond: 2
+  increasingSpeed: 0
 --- !u!1 &2081985297 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3081210972818006700, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
@@ -1274,6 +1274,10 @@ PrefabInstance:
     - target: {fileID: 3081210973210519059, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081210973743297460, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
+      propertyPath: m_text
+      value: "\rEasy!"
       objectReference: {fileID: 0}
     - target: {fileID: 3081210974122980362, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
       propertyPath: m_Pivot.x

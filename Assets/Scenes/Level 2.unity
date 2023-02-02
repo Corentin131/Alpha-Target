@@ -235,6 +235,7 @@ MonoBehaviour:
   particleWhenTouchTarget: {fileID: 0}
   particleWhenTouchObstacleNotStay: {fileID: 0}
   trailRenderer: {fileID: 0}
+  arrowAnimator: {fileID: 0}
   speed: 0
   cameraName: 
 --- !u!1 &268081661
@@ -1380,6 +1381,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 350
+  speedPearSecond: 2
+  increasingSpeed: 0
 --- !u!1 &2081985297 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3081210972818006700, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
@@ -1392,6 +1395,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3081210972738431441, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3081210972850260006, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
       propertyPath: gLS
       value: 
@@ -1403,6 +1410,14 @@ PrefabInstance:
     - target: {fileID: 3081210973210519059, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081210973743297460, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
+      propertyPath: m_text
+      value: Yes!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3081210973743297460, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
+      propertyPath: m_fontSize
+      value: 191.2
       objectReference: {fileID: 0}
     - target: {fileID: 3081210974122980362, guid: aae384075d6bc944a97d3f89851b7843, type: 3}
       propertyPath: m_Pivot.x
