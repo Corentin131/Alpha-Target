@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     public string nameTriggerAnimatorCameraAnimator;
     public Animator animatorCamera;
     public GameObject numberOfRechargeTextGameObject;
-    public GameObject sliderRechargeFilGameObject;
     //public Slider sliderRecharge;
     TextMeshProUGUI numberOfRechargeText;
     Animator numberOfRechargeTextAnimator;
@@ -72,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             Shoot();
         }
         if(runningNumberOfRecharge != gLS.runningNumberOfRecharge){
-            numberOfRechargeText.text = gLS.runningNumberOfRecharge.ToString()+"/"+runningNumberOfRecharge.ToString();
+            numberOfRechargeText.text = gLS.runningNumberOfRecharge.ToString()+"/"+numberOfRecharge.ToString();
             numberOfRechargeTextAnimator.SetTrigger("Loose");
         }
         runningNumberOfRecharge = gLS.runningNumberOfRecharge;

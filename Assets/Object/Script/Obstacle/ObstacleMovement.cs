@@ -5,16 +5,28 @@ using UnityEngine;
 public class ObstacleMovement : MonoBehaviour
 {
     public float RotationSpeed;
+    public float speedPearSecond = 2;
+    public bool increasingSpeed;
+    float runningRotationSpeed;
     // Start is called before the first frame update
-    void Start()
+    void  Start()
     {
-        
+        if(increasingSpeed == true){
+            runningRotationSpeed = 0;
+        }else{
+            runningRotationSpeed = RotationSpeed;
+        }
     }
-
     // Update is called once per frame
     void Update()
-    {
-        gameObject.transform.Rotate(0f,0f,RotationSpeed * Time.deltaTime, Space.Self);
+    {   
+        if(increasingSpeed == true){
+            runningRotationSpeed += speedPearSecond;
+            if (runningRotationSpeed > RotationSpeed || runningRotationSpeed < -RotationSpeed){
+                speedPearSecond = -speedPearSecond;
+            }
+        }
+        gameObject.transform.Rotate(0f,0f,runningRotationSpeed * Time.deltaTime, Space.Self);
     }
 
 }

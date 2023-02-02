@@ -11,12 +11,15 @@ public class TargetGestion : MonoBehaviour
     public GameObject[] objectsToActivate;
     public GameObject[] objectsToDisable;
 
-    void OnTriggerEnter2D(Collider2D other) {
-        SetActiveGameObject(objectsToActivate,objectsToDisable);
-        //gLS.win = true; 
-        //gLS.loose = false;
-        //StartCoroutine(TakeScreenShot()); 
-        StartCoroutine(End());
+    void OnCollisionEnter2D(Collision2D  other) {
+        //SetActiveGameObject(objectsToActivate,objectsToDisable);
+        ProjectilMovement projectileMovement = other.gameObject.GetComponent<ProjectilMovement>();
+        if(projectileMovement.state == 2){
+            SetActiveGameObject(objectsToActivate,objectsToDisable);
+            projectileMovement.state = 4;
+            StartCoroutine(End());
+        //gLS.win = true;
+        }
     }
     IEnumerator End() {
         yield return new WaitForSecondsRealtime(1);
