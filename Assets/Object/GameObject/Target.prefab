@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2235172441999445674}
   - component: {fileID: 2235172441999445675}
-  - component: {fileID: 2235172441999445672}
   - component: {fileID: 2235172441999445679}
   - component: {fileID: 2235172441999445678}
+  - component: {fileID: 7775275646062761762}
   m_Layer: 0
   m_Name: Target
   m_TagString: TargetWood
@@ -89,22 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &2235172441999445672
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2235172441999445684}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.1319162, y: -0.20669784}
-  serializedVersion: 2
-  m_Radius: 1.6220741
 --- !u!114 &2235172441999445679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +107,9 @@ MonoBehaviour:
   - {fileID: 2235172442366210867}
   objectsToDisable:
   - {fileID: 2235172441999445684}
+  myArrowGameObject: []
+  life: 0
+  lifes: 2
 --- !u!50 &2235172441999445678
 Rigidbody2D:
   serializedVersion: 4
@@ -144,6 +131,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &7775275646062761762
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2235172441999445684}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.1654547, y: -0.29744107}
+  serializedVersion: 2
+  m_Radius: 7.207663
 --- !u!1 &2235172442065034708
 GameObject:
   m_ObjectHideFlags: 0

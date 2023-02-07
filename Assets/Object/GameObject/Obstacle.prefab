@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3931632212729621360}
   - component: {fileID: 3931632212729621363}
   - component: {fileID: 3931632212729621362}
-  - component: {fileID: 3596203350588309254}
+  - component: {fileID: 7827141804560181965}
   m_Layer: 0
   m_Name: Obstacle
   m_TagString: WoodObstacle
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onTutchParameter: StayInObtsacle
   cameraAnimation: {fileID: 0}
---- !u!68 &3596203350588309254
-EdgeCollider2D:
+--- !u!60 &7827141804560181965
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -136,26 +136,27 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 21.6, y: 16.2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -3.4008248, y: 1.8701528}
-  - {x: -5.26406, y: -1.2375591}
-  - {x: -4.9003153, y: -1.4317385}
-  - {x: -3.0985644, y: -2.2720401}
-  - {x: -0.20531492, y: -2.8181615}
-  - {x: 1.9062203, y: -2.5929837}
-  - {x: 3.435348, y: -2.1155927}
-  - {x: 5.4762588, y: -0.9956808}
-  - {x: 6.1366878, y: -0.6336853}
-  - {x: 4.073198, y: 2.235487}
-  - {x: 3.2060204, y: 1.6332569}
-  - {x: 1.9580767, y: 1.0905471}
-  - {x: 0.696988, y: 0.8296175}
-  - {x: -0.47296122, y: 0.829171}
-  - {x: -1.3439084, y: 0.9562118}
-  - {x: -2.2721217, y: 1.2521992}
-  - {x: -3.2938538, y: 1.8307946}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+    m_Paths:
+    - - {x: 0.40586296, y: 0.8158265}
+      - {x: -0.29226846, y: 0.7782122}
+      - {x: -2.168326, y: 1.2559186}
+      - {x: -3.0090067, y: 1.5552878}
+      - {x: -4.804799, y: -0.6546776}
+      - {x: -2.5337996, y: -2.0590372}
+      - {x: 0.65058357, y: -2.6003833}
+      - {x: 4.065677, y: -1.7574321}
+      - {x: 6.211424, y: -0.32092074}
+      - {x: 3.9614878, y: 2.0740547}
+      - {x: 3.4030569, y: 1.7129575}
+      - {x: 1.963097, y: 1.112312}
+      - {x: 1.1240628, y: 0.9064933}

@@ -1,5 +1,4 @@
 using System.Threading;
-using System.Diagnostics;
 using System.Xml;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,8 +19,9 @@ public class PlayerMovement : MonoBehaviour
     public string nameTriggerAnimatorShooterRecharge;
     public string nameTriggerAnimatorShooterShoot;
     public Animator animatorShooter;
-    public string nameTriggerAnimatorCameraAnimator;
+    //public string nameTriggerAnimatorCameraAnimator;
     public Animator animatorCamera;
+    public GameObject cameraHolder;
     public GameObject numberOfRechargeTextGameObject;
     //public Slider sliderRecharge;
     TextMeshProUGUI numberOfRechargeText;
@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     //Animator sliderRechargeFilAnimator;
     int runningNumberOfRecharge;
     float runningTimerFire;
+    float minimum;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +41,9 @@ public class PlayerMovement : MonoBehaviour
         gLS.timerRecharge = staticTimerFire;
         runningNumberOfRecharge = numberOfRecharge;
         gLS.runningNumberOfRecharge = runningNumberOfRecharge;
-        numberOfRechargeText.text =  runningNumberOfRecharge.ToString()+"/"+numberOfRecharge.ToString();
+        numberOfRechargeText.text =  runningNumberOfRecharge.ToString();//+"/"+numberOfRecharge.ToString();
+
+        minimum = gLS.runningNumberOfRecharge/3;
 
         runningTimerFire = staticTimerFire;
     }
@@ -71,12 +74,29 @@ public class PlayerMovement : MonoBehaviour
             Shoot();
         }
         if(runningNumberOfRecharge != gLS.runningNumberOfRecharge){
-            numberOfRechargeText.text = gLS.runningNumberOfRecharge.ToString()+"/"+numberOfRecharge.ToString();
+            numberOfRechargeText.text = gLS.runningNumberOfRecharge.ToString();//+"/"+numberOfRecharge.ToString();
             numberOfRechargeTextAnimator.SetTrigger("Loose");
         }
         runningNumberOfRecharge = gLS.runningNumberOfRecharge;
+        //Debug.Log(minimum*2);
+        //Debug.Log(gLS.runningNumberOfRecharge);
+        if(minimum*3 >= gLS.runningNumberOfRecharge){
+            numberOfRechargeText.color = ColorFromBytes(3,181,19);
+        }
+        if(minimum*2 >= gLS.runningNumberOfRecharge){
+            StartCoroutine(gLS.Shake(0.1f,3f,3f,numberOfRechargeTextGameObject));
+            numberOfRechargeText.color = ColorFromBytes(246,190,0);
+        }
+        if(minimum*1 >= gLS.runningNumberOfRecharge){
+            StartCoroutine(gLS.Shake(0.1f,6f,6f,numberOfRechargeTextGameObject));
+            numberOfRechargeText.color = ColorFromBytes(245,4,0);
+        }
     }   
 
+    public static Color ColorFromBytes(byte r, byte g, byte b, byte a = 255)
+    {
+            return new Color(r / 255f, g / 255f, b / 255f, a / 255f);
+    }
     void Movement(Touch touch){
         float angle = ((360/100)*((touch.position.x/Screen.width)*percentageOfLimit)); //playerRotation.transform.eulerAngles.z;
         float angleResult = angle* Time.deltaTime;
@@ -84,9 +104,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void Shoot(){
         animatorShooter.SetTrigger(nameTriggerAnimatorShooterShoot);
-        if(nameTriggerAnimatorCameraAnimator != ""){
-            animatorCamera.SetTrigger(nameTriggerAnimatorCameraAnimator);
-        }
+        //if(nameTriggerAnimatorCameraAnimator != ""){
+        //animatorCamera.SetTrigger("Shoot");
+        //}
         
         gLS.canShot = true;
         canShot = false;
@@ -95,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Recharge(){
         Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
-
+        animatorCamera.SetTrigger("Recharge");
         StartCoroutine(CoolDownBeforeAnimator(timeBeforeAnimationShooterRecharge,animatorShooter,nameTriggerAnimatorShooterRecharge));
 
         canShot = false;

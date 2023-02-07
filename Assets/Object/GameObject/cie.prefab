@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1667371590253263541}
   m_Layer: 0
   m_Name: cie
-  m_TagString: Scie
+  m_TagString: Metal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotationSpeed: 270
+  speedPearSecond: 2
+  increasingSpeed: 0
 --- !u!58 &1667371590253263540
 CircleCollider2D:
   m_ObjectHideFlags: 0

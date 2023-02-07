@@ -9,7 +9,8 @@ TagManager:
   - ProjectileFoot
   - WoodObstacle
   - TargetWood
-  - Scie
+  - Apple
+  - Hammer
   layers:
   - Default
   - TransparentFX

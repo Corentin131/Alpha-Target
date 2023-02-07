@@ -16,9 +16,13 @@ public class MenuGestion : MonoBehaviour
     void Update()
     {
         if(gLS.win == true){
-            winMenu.SetActive(true);
+            StartCoroutine(activeMenu(winMenu));
         }else if(gLS.loose == true){
-            gameOverMenu.SetActive(true);
+            StartCoroutine(activeMenu(gameOverMenu));
         }
+    }
+    IEnumerator activeMenu(GameObject menu){
+        yield return new WaitForSecondsRealtime(1);
+        menu.SetActive(true);
     }
 }
