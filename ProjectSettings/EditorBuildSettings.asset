@@ -8,5 +8,20 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 439cf67a9abbff94094e4dcb9d3f2217
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 958a73a9980298a47a3eaa7e4ba5d379
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 487f76dd860fcdd44b7ca53c7eba94d7
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: 393f3a79bea27404aae5b04dd3ed0388
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: dabd1bc8caaffd142bfde4c835059e31
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 934732281f70850489233a311a5020e3, type: 2}
