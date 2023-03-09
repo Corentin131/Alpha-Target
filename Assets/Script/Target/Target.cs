@@ -62,7 +62,7 @@ public class Target : MonoBehaviour
                     objectToDisable.GetComponent<SpriteRenderer>().enabled = false;
                 }
 
-                StartCoroutine(gLS.Shake(0.1f , 0.18f ,0.18f,secondCameraHolder,true));
+                StartCoroutine(gLS.Shake(0.1f , 0.16f ,0.16f,secondCameraHolder,true));
                 StartCoroutine(gLS.SlowDawn(0.005f,2.5f));
 
                 gLS.win = true;
