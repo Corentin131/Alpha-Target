@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class RechargeBar : MonoBehaviour
 {
-    public GlobalInforationscript gLS;
     public Slider sliderRecharge;
     // Start is called before the first frame update
     void Start()
@@ -16,6 +15,6 @@ public class RechargeBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sliderRecharge.value = gLS.timerRecharge;
+        sliderRecharge.value = BrainGame.timerRecharge;
     }
 }

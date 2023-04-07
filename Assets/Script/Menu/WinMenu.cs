@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class WinMenu : MonoBehaviour
 {
-    public GlobalInforationscript gLS;
     public GameObject winMenu;
     public GameObject gameOverMenu;
     public int levelToLoad;
@@ -18,20 +17,14 @@ public class WinMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gLS.win == true)
+        if(BrainGame.win == true)
         {
             winMenu.SetActive(true);
-            SceneManager.LoadScene("Level 2");
-            //StartCoroutine(ChangeLevel(1.5f));
-        }else if(gLS.loose == true)
+
+        }else if(BrainGame.loose == true)
         {
             gameOverMenu.SetActive(true);
         }
     }
 
-    IEnumerator ChangeLevel(float second)
-    {
-        yield return new WaitForSeconds(second);
-        SceneManager.LoadScene(levelToLoad);
-    }
 }

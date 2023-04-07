@@ -1,5 +1,4 @@
 using System.Transactions;
-using System.Numerics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +29,7 @@ public class MovableObjectMovement : MonoBehaviour
             }
         }
         nextPos = checkPoint[posIndex];
-        transform.position = UnityEngine.Vector2.MoveTowards(transform.position, nextPos.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, nextPos.position, speed * Time.deltaTime);
         
     }
 }

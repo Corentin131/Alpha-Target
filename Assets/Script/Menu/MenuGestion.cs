@@ -5,25 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MenuGestion : MonoBehaviour
 {
-    public GlobalInforationscript gLS;
     public GameObject winMenu;
     public GameObject gameOverMenu;
     public int levelToLoad;
-
+    public float secondToLoadScene;
+    public float secondToActiveWinMenu;
     bool loadScene = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if(gLS.win == true){
-            StartCoroutine(ActiveMenu(winMenu));
-        }else if(gLS.loose == true){
-            StartCoroutine(ActiveMenu(gameOverMenu));
+        if(BrainGame.win == true){
+            StartCoroutine(ActiveMenu(winMenu,secondToLoadScene,secondToActiveWinMenu));
+        }else if(BrainGame.loose == true){
+            StartCoroutine(ActiveMenu(gameOverMenu,secondToLoadScene,secondToActiveWinMenu));
         }
         if(loadScene == true)
         {
@@ -31,11 +26,11 @@ public class MenuGestion : MonoBehaviour
         }
         
     }
-    IEnumerator ActiveMenu(GameObject menu)
+    IEnumerator ActiveMenu(GameObject menu,float secondToLoadScene,float secondToActiveWinMenu)
     {
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(secondToActiveWinMenu);
         menu.SetActive(true);
-        yield return new WaitForSecondsRealtime(4f);
+        yield return new WaitForSecondsRealtime(secondToLoadScene);
         loadScene = true;
     }
 }

@@ -6,8 +6,38 @@ using UnityEngine;
 
 public class NumberOfProjectle : MonoBehaviour
 {
-    public GlobalInforationscript gLS;
+    public GameObject iconExample;
+    public float distance;
 
+    GameObject[] icons;
+    int numberOfRecharge;
+
+    void Update() 
+    {
+        if (numberOfRecharge != BrainGame.numberOfRecharge)
+        {
+            numberOfRecharge = BrainGame.numberOfRecharge;
+            StartCoroutine(Display());
+        }
+    }
+
+    IEnumerator Display()
+    {   
+        Debug.Log(numberOfRecharge);
+        
+        Vector2 position = transform.position;
+
+        foreach (int value in Enumerable.Range(0, numberOfRecharge))
+        {
+            GameObject icon = Instantiate(iconExample,position,iconExample.transform.rotation);
+            icon.transform.parent = transform;
+            position.x = position.x-distance;
+
+            yield return null;
+        }
+        
+    }
+    /*
     TextMeshProUGUI text;
     float minimum;
     void Start()
@@ -18,16 +48,10 @@ public class NumberOfProjectle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text =  gLS.runningNumberOfRecharge.ToString();
+        text.text =  BrainGame.runningNumberOfRecharge.ToString();
 
-        if(gLS.staticNumberOfRecharge/3*3 >= gLS.runningNumberOfRecharge){
-            text.color = ColorFromBytes(3,181,19);
-        }
-        if(gLS.staticNumberOfRecharge/3*2 >= gLS.runningNumberOfRecharge){
-            text.color = ColorFromBytes(246,190,0);
-        }
-        if(gLS.staticNumberOfRecharge/3*1 >= gLS.runningNumberOfRecharge){
-            StartCoroutine(gLS.Shake(0.1f,3f,3f,gameObject,true));
+        if(BrainGame.runningNumberOfRecharge == 1){
+            StartCoroutine(GlobalFunctions.Shake(0.1f,3f,3f,gameObject,true));
             text.color = ColorFromBytes(245,4,0);
         }
     }
@@ -36,4 +60,5 @@ public class NumberOfProjectle : MonoBehaviour
     {
             return new Color(r / 255f, g / 255f, b / 255f, a / 255f);
     }
+    */
 }

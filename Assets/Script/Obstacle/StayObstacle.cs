@@ -1,18 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class StayObstacle : MonoBehaviour
 {   
-    public GlobalInforationscript gLS;
-    public GameObject cameraHolder;
-    public GameObject[] spawnEffect;
-    public Animator cameraAnimator;
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject[] spawnEffects;
+    public Target target;
+    public Vector2 force;
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
@@ -30,22 +25,15 @@ public class StayObstacle : MonoBehaviour
                 other.GetComponent<Collider2D>().enabled = false;
                 projectileMovement.trail.emitting = false;
 
-                //cameraAnimator.SetTrigger("Shoot");
+                GlobalFunctions.SpawnEffect(spawnEffects,projectileMovement.spawnEffect);
                 
-                foreach(GameObject objectToSpawn in spawnEffect)
-                {
-                    Transform positionEffect = projectileMovement.spawnEffect;
-                    /*
-                    if(objectToSpawn.tag == "Text")
-                    {
-                        positionEffect.eulerAngles = new Vector3(0,0,0);
-                        Instantiate(objectToSpawn, positionEffect.position,positionEffect.localRotation);
-                    }
-                    */
-                    Instantiate(objectToSpawn, positionEffect.position,positionEffect.localRotation);
-                }
-                
-                StartCoroutine(gLS.Shake(0.09f,0.2f,0.2f,cameraHolder,true));
+                StartCoroutine(GlobalFunctions.Shake(0.09f,0.3f,0.3f,BrainGame.cameraHolder,false));
+            }
+
+            if(target != null)
+            {
+                target.Slice(other.gameObject);
+                other.transform.parent.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             }
         }
     }

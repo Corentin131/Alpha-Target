@@ -70,10 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gLS: {fileID: 0}
   cameraHolder: {fileID: 0}
-  spawnEffect:
+  spawnEffects:
   - {fileID: 6013729915651973380, guid: 89fbfe3174903f94e99efaed44a9dcfe, type: 3}
   - {fileID: 1329742085798343625, guid: e3dbcf37f931b1f47b5ffd03e9b19f0d, type: 3}
-  - {fileID: 7352072015395634323, guid: a890233bc04525245be43059ded0441f, type: 3}
   cameraAnimator: {fileID: 0}
 --- !u!212 &3931632212729621363
 SpriteRenderer:

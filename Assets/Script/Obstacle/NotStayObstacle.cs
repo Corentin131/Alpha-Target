@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class NotStayObstacle : MonoBehaviour
 {
-    public GlobalInforationscript gLS;
-    public GameObject cameraHolder;
-    public GameObject[] spawnEffect;
+    public GameObject[] spawnEffects;
+
+    GameObject cameraHolder = BrainGame.cameraHolder;
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
@@ -26,17 +26,9 @@ public class NotStayObstacle : MonoBehaviour
                 projectileMovement.trail.enabled = false;
                 projectileMovement.state = 3;
 
-                foreach(GameObject objectToSpawn in spawnEffect)
-                {
-                    Transform rotation = projectileMovement.spawnEffect;
-                    if(objectToSpawn.tag == "Text")
-                    {
-                        rotation.eulerAngles = new Vector3(0,0,0);
-                    }
-                    Instantiate(objectToSpawn, rotation.position,rotation.rotation);
-                }
+                GlobalFunctions.SpawnEffect(spawnEffects,projectileMovement.spawnEffect);
             
-                StartCoroutine(gLS.Shake(0.09f,0.3f,0.3f,cameraHolder,true));
+                StartCoroutine(GlobalFunctions.Shake(0.09f,0.3f,0.3f,cameraHolder,true));
             }
         }
     }

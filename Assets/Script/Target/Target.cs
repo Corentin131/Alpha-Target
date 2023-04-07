@@ -1,72 +1,49 @@
-using System.Net.Mime;
-
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class Target : MonoBehaviour
 {
-    public GlobalInforationscript gLS;
     public GameObject[] objectsToActivate;
     public GameObject[] objectsToDisable;
-    public GameObject[] Effects;
+    public GameObject[] spawnEffects;
     public Transform spawnEffect;
-    List<GameObject> myArrowGameObject = new List<GameObject>();
-    public Camera principalCamera;
-    public Camera secondCamera;
+    public GameObject cameraHolder;
 
-    GameObject principalCameraHolder;
-    GameObject secondCameraHolder;
-    void Start()
+    public void Slice(GameObject projectile)
     {
-        principalCameraHolder = principalCamera.transform.parent.gameObject;
-        secondCameraHolder = secondCamera.transform.parent.gameObject;
-    }
-    void OnTriggerEnter2D(Collider2D  other) 
-    {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        ProjectilMovement projectileMovement = projectile.transform.parent.gameObject.GetComponent<ProjectilMovement>();
+
+        if(projectileMovement.state == 2)
         {
-            ProjectilMovement projectileMovement = other.transform.parent.gameObject.GetComponent<ProjectilMovement>();
+            projectileMovement.state = 3;
+            
+            projectile.gameObject.GetComponent<Collider2D>().enabled = false;
 
-            if(projectileMovement.state == 2)
+            BrainGame.win = true;
+
+            GlobalFunctions.SpawnEffect(spawnEffects,spawnEffect);
+
+            foreach (GameObject objectToActivate in objectsToActivate)
             {
-                projectileMovement.state = 3;
+                Rigidbody2D rb = objectToActivate.GetComponent<Rigidbody2D>();
+                Vector2 force = objectToActivate.GetComponent<StayObstacle>().force;
 
-                myArrowGameObject.Add(other.gameObject);
+                objectToActivate.GetComponent<SpriteRenderer>().enabled = true;
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.AddRelativeForce(force);
+                rb.angularVelocity = -(Mathf.Sign(force.x))*50;
+            }
 
-                gameObject.transform.rotation = other.transform.rotation;
+            foreach (GameObject objectToDisable in objectsToDisable)
+            {
+                objectToDisable.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            
+            StartCoroutine(GlobalFunctions.Shake(0.1f , 0.4f ,0.4f,cameraHolder,true));
 
-                principalCamera.enabled = false;
-                secondCamera.enabled = true;
-                
-                foreach(GameObject objectToSpawn in Effects)
-                {
-                    if(objectToSpawn.tag == "Text")
-                    {
-                        spawnEffect.eulerAngles = new Vector3(0,0,0);
-                    }
-                    Instantiate(objectToSpawn, spawnEffect.position,spawnEffect.rotation);
-                }
-
-                foreach (GameObject objectToActivate in objectsToActivate)
-                {
-                    objectToActivate.SetActive(true);
-                    Rigidbody2D rb = objectToActivate.GetComponent<Rigidbody2D>();
-                    rb.bodyType = RigidbodyType2D.Dynamic;
-                    rb.AddRelativeForce(new Vector2(400000f, 0f));
-                }
-
-                foreach (GameObject objectToDisable in objectsToDisable)
-                {
-                    objectToDisable.GetComponent<SpriteRenderer>().enabled = false;
-                }
-
-                StartCoroutine(gLS.Shake(0.1f , 0.16f ,0.16f,secondCameraHolder,true));
-                StartCoroutine(gLS.SlowDawn(0.005f,2.5f));
-
-                gLS.win = true;
+            Vibrator.Vibrate(50);
             } 
-        }   
-    }
+    }   
 }
+

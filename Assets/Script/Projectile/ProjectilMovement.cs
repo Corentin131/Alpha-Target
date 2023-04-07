@@ -10,8 +10,6 @@ public class ProjectilMovement : MonoBehaviour
     public GameObject foot;
     public Rigidbody2D rb;
     [HideInInspector]public float speed;
-    [HideInInspector]public GlobalInforationscript gLS;
-
     [HideInInspector] public Transform rotationBase;
     [HideInInspector]public Transform spawnEffect;
     [HideInInspector]public TrailRenderer trail;
@@ -39,9 +37,10 @@ public class ProjectilMovement : MonoBehaviour
         spawnEffect = RecursiveFindChild(gameObject.transform, "SpawnEffect");
     }
 
-    public void Shoot()
+    public void Shoot(float runningTime, float staticTime)
     {
         state = 2;
+        gameObject.transform.SetParent(null);
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.AddRelativeForce(new Vector2(speed, 0f));
         trail = RecursiveFindChild(gameObject.transform, "TrailRenderer").GetComponent<TrailRenderer>();
