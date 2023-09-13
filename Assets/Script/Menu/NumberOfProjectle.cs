@@ -9,22 +9,28 @@ public class NumberOfProjectle : MonoBehaviour
     public GameObject iconExample;
     public float distance;
 
-    GameObject[] icons;
-    int numberOfRecharge;
+    List<GameObject> icons = new List<GameObject>();
+    int numberOfRecharge = 0;
 
     void Update() 
     {
-        if (numberOfRecharge != BrainGame.numberOfRecharge)
+        if (numberOfRecharge < BrainGame.numberOfRecharge)
         {
             numberOfRecharge = BrainGame.numberOfRecharge;
-            StartCoroutine(Display());
+            Display();
+        }
+        
+        if(numberOfRecharge > BrainGame.numberOfRecharge)
+        {
+            Remove();
+            numberOfRecharge = BrainGame.numberOfRecharge;
         }
     }
 
-    IEnumerator Display()
+    void Display()
     {   
-        Debug.Log(numberOfRecharge);
-        
+        icons.Clear();
+
         Vector2 position = transform.position;
 
         foreach (int value in Enumerable.Range(0, numberOfRecharge))
@@ -32,33 +38,16 @@ public class NumberOfProjectle : MonoBehaviour
             GameObject icon = Instantiate(iconExample,position,iconExample.transform.rotation);
             icon.transform.parent = transform;
             position.x = position.x-distance;
-
-            yield return null;
-        }
-        
-    }
-    /*
-    TextMeshProUGUI text;
-    float minimum;
-    void Start()
-    {
-        text = gameObject.GetComponent<TextMeshProUGUI>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        text.text =  BrainGame.runningNumberOfRecharge.ToString();
-
-        if(BrainGame.runningNumberOfRecharge == 1){
-            StartCoroutine(GlobalFunctions.Shake(0.1f,3f,3f,gameObject,true));
-            text.color = ColorFromBytes(245,4,0);
+            icons.Add(icon);
         }
     }
-
-    public static Color ColorFromBytes(byte r, byte g, byte b, byte a = 255)
+    void Remove()
     {
-            return new Color(r / 255f, g / 255f, b / 255f, a / 255f);
+        foreach (int value in Enumerable.Range(0, numberOfRecharge-BrainGame.numberOfRecharge))
+        {
+            GameObject icon = icons.Last();
+            icons.Remove(icons.Last());
+            Destroy(icon);
+        }
     }
-    */
 }
